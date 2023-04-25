@@ -3,16 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ListaCursosComponent } from './lista-cursos/lista-cursos.component';
+import { SGestionService } from './ServicioCursos/sgestion.service';
+import { FormularioCursoComponent } from './formulario-curso/formulario-curso.component';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListaCursosComponent,
+    FormularioCursoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [SGestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

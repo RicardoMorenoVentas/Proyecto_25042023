@@ -1,0 +1,91 @@
+<ng-template #modCursoBtn
+  ><button
+    (click)="modificarCurso()"
+    [routerLink]="['/lista-cursos']"
+    routerLinkActive="active"
+  >
+    Modificar curso
+  </button></ng-template
+>
+<ng-template #addCursoBtn>
+  <button
+    (click)="addCurso()"
+    [routerLink]="['/lista-cursos']"
+    routerLinkActive="active"
+  >
+    Añadir curso
+  </button>
+</ng-template>
+
+<ng-template #eliminarCursoBtn>
+  <button
+    (click)="eliminarCursoFun()"
+    [routerLink]="['/lista-cursos']"
+    routerLinkActive="active"
+  >
+    Eliminar curso
+  </button>
+</ng-template>
+
+<ng-template #eliminarCurso>
+  <h1>Formulario para eliminar curso</h1>
+  <p>
+    <small>Nombre del curso</small><br /><input
+      type="text"
+      [(ngModel)]="curso!.nombre"
+      [disabled]="true"
+    />
+  </p>
+  <p>
+    <small>Duración del curso</small><br /><input
+      type="number"
+      [(ngModel)]="curso!.duracion"
+      [disabled]="true"
+    />
+  </p>
+  <p>
+    <small>Nivel</small><br /><select
+      [(ngModel)]="curso!.nivel"
+      [disabled]="true"
+    >
+      <option *ngFor="let index of opciones_niveles" [value]="index">
+        {{ index }}
+      </option>
+    </select>
+  </p>
+</ng-template>
+
+<div [ngSwitch]="tipoCaso">
+  <div *ngSwitchCase="1" [ngTemplateOutlet]="mod"></div>
+  <div *ngSwitchCase="2" [ngTemplateOutlet]="mod"></div>
+  <div *ngSwitchCase="3" [ngTemplateOutlet]="eliminarCurso"></div>
+  <div *ngSwitchDefault>Error no esperado</div>
+</div>
+<div [ngSwitch]="tipoCaso">
+  <div *ngSwitchCase="1" [ngTemplateOutlet]="addCursoBtn"></div>
+  <div *ngSwitchCase="2" [ngTemplateOutlet]="modCursoBtn"></div>
+  <div *ngSwitchCase="3" [ngTemplateOutlet]="eliminarCursoBtn"></div>
+  <div *ngSwitchDefault>Error no esperado</div>
+</div>
+<ng-template #mod>
+  <h1>Formulario para modificar / añadir nuevo curso</h1>
+  <p>
+    <small>Nombre del curso</small><br /><input
+      type="text"
+      [(ngModel)]="curso!.nombre"
+    />
+  </p>
+  <p>
+    <small>Duración del curso</small><br /><input
+      type="number"
+      [(ngModel)]="curso!.duracion"
+    />
+  </p>
+  <p>
+    <small>Nivel</small><br /><select [(ngModel)]="curso!.nivel">
+      <option *ngFor="let index of opciones_niveles" [value]="index">
+        {{ index }}
+      </option>
+    </select>
+  </p>
+</ng-template>

@@ -1,0 +1,30 @@
+<ng-template #vacio>
+  <h1>La lista actualmente se encuentra vacia</h1>
+</ng-template>
+
+<div *ngIf="sgestion.lista_cursos.length > 0; else vacio">
+  <h3>Lista de cursos</h3>
+  <table class="table table-striped">
+    <thead>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Duración</th>
+      <th scope="col">Nivel</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let index of sgestion.lista_cursos">
+        <td scope="row">{{index.id}}</td>
+        <td scope="row">{{index.nombre}}</td>
+        <td scope="row">{{index.duracion}}</td>
+        <td scope="row">{{index.nivel}}</td>
+        <button [routerLink]="['/mod-curso',index.id]" routerLinkActive="active" ariaCurrentWhenActive="page">🔧</button>
+        <button [routerLink]="['/mod-curso',index.id,true]" routerLinkActive="active" ariaCurrentWhenActive="page">❌</button>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button [routerLink]="['/mod-curso']">Añadir curso</button>
+<br>
+<hr>
+<br>
+<router-outlet></router-outlet>
